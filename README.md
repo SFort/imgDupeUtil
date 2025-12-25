@@ -25,3 +25,5 @@ VIEW(){
 
 after it's compleated importing the data run `java -jar imgDupeUtil-1.jar ":mpvUi"` to start the ui.
 or in case you prefer no ui. run `java -jar imgDupeUtil-1.jar ":mpv"` for every entry 
+
+clicking on the buttons in the ui will delete the entire path
