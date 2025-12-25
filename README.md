@@ -1,7 +1,7 @@
-### img dupe util
+### image dupe util
 
 This is a quickly thrown together tool to help me resolve houndrets of thousands of duplicate images.
-I likely made lots of mistakes. It has issues, only works on linux and is build for extreamly nieche use.
+I likely made lots of mistakes. It has issues, only works on linux and is built for extreamly nieche use.
 
 requires `findimagedupes`, `mpv`
 
@@ -9,7 +9,7 @@ requires `findimagedupes`, `mpv`
 
 run :
 
-`findimagedupes --script - -f /tmp/fingerprint90 -P -t "90%" -R file2 file4 file5 > dupes.sh`
+`findimagedupes --script - -f /tmp/fingerprint90 -P -t "90%" -R folder2 folder4 folder5 > dupes.sh`
 
 
 Compile this project.
