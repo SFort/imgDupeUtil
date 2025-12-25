@@ -3,6 +3,7 @@
 This is a quickly thrown together tool to help me resolve houndrets of thousands of duplicate images.
 I likely made lots of mistakes. It has issues, only works on linux and is build for extreamly nieche use.
 
+requires `findimagedupes`, `mpv`
 
 #### Usage
 
