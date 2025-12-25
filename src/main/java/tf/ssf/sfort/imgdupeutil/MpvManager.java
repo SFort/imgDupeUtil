@@ -60,6 +60,7 @@ public void add(Map.Entry<String, Set<String>> next) {
 	scrollPanel.removeAll();
 	int i = 0;
 	String p;
+	if (next.getValue().size() > Main.PAGE_LIMIT) return;
 	JButton fileButton = add(i++ +": "+ (p = next.getKey()), p, null);
 	JButton fi=fileButton;
 	add(i++ +": "+ (p = Main.getF(next.getKey())), p, ()->fi.setEnabled(false));

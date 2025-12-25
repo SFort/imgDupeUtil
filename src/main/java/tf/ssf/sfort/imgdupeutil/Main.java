@@ -32,6 +32,7 @@ public static final Map<String, Set<String>> store=new HashMap<>();
 public static Iterator<Map.Entry<String, Set<String>>> iter=null;
 public static int iterI=-1;
 public static final List<Process> iterList=new ArrayList<>();
+public static int PAGE_LIMIT = 35;
 public static MpvManager ui = null;
 
 public static void main(String[] args) throws Exception{
@@ -73,6 +74,11 @@ public static void main(String[] args) throws Exception{
 						System.out.println("\nplay: "+iterI+"/"+store.size());
 						Map.Entry<String, Set<String>> n = iter.next();
 						if (ui != null) ui.add(n);
+						if (n.getValue().size() > PAGE_LIMIT) {
+							System.out.println();
+							System.out.println("TOO MANY FILES\n"+String.join(", ", n.getValue()));
+							break;
+						}
 						play(n);
 						
 						break;
