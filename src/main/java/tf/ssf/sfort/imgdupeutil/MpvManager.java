@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +27,6 @@ public MpvManager() {
 	}
 	
 	setTitle("MPV Manager");
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setLayout(new BorderLayout());
 	scrollPanel = new JPanel();
 	scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
@@ -36,8 +36,12 @@ public MpvManager() {
 	
 	
 	JButton nextButton = new JButton("Next");
-	
+	JButton allFiles = new JButton("Remove all base files");
 	JPanel buttonPanel = new JPanel(new FlowLayout());
+	buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+	allFiles.setAlignmentX(Component.CENTER_ALIGNMENT);
+	buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+	buttonPanel.add(allFiles);
 	buttonPanel.add(nextButton);
 	
 	add(scrollPane, BorderLayout.CENTER);
@@ -51,6 +55,11 @@ public MpvManager() {
 		}catch (IOException ignored){
 		}
 	});
+	allFiles.addActionListener(e -> {
+		for (Component comp : scrollPanel.getComponents()) {
+			if (comp instanceof JButt butt) butt.doClick(1);
+		}
+	});
 	
 	setSize(500, 400);
 	setLocationRelativeTo(null);
@@ -60,7 +69,6 @@ public void add(Map.Entry<String, Set<String>> next) {
 	scrollPanel.removeAll();
 	int i = 0;
 	String p;
-	if (next.getValue().size() > Main.PAGE_LIMIT) return;
 	JButton fileButton = add(i++ +": "+ (p = next.getKey()), p, null);
 	JButton fi=fileButton;
 	add(i++ +": "+ (p = Main.getF(next.getKey())), p, ()->fi.setEnabled(false));
@@ -70,8 +78,10 @@ public void add(Map.Entry<String, Set<String>> next) {
 		add(i++ +": "+ (p = Main.getF(s)), p, ()->fii.setEnabled(false));
 	}
 }
+public static class JButt extends JButton {}
 public JButton add(String disp, String path, Runnable act) {
-	JButton button = new JButton(disp);
+	JButton button = act == null ? new JButt() : new JButton();
+	button.setText(disp);
 	button.addActionListener(e->{
 		if (act != null) act.run();
 		button.setEnabled(false);

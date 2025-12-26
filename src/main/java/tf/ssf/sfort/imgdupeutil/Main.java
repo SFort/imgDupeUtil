@@ -76,7 +76,9 @@ public static void main(String[] args) throws Exception{
 						if (ui != null) ui.add(n);
 						if (n.getValue().size() > PAGE_LIMIT) {
 							System.out.println();
-							System.out.println("TOO MANY FILES\n"+String.join(", ", n.getValue()));
+							play(n.getKey());
+							n.getValue().stream().limit(9).forEach(Main::play);
+							System.out.println("TOO MANY FILES "+n.getValue().size());
 							break;
 						}
 						play(n);
